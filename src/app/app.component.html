@@ -1,0 +1,203 @@
+<main class="page-shell">
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="particle-field" aria-hidden="true">
+    @for (particle of [1,2,3,4,5,6,7,8,9,10,11,12]; track particle) {
+      <span></span>
+    }
+  </div>
+
+  <nav class="nav glass-panel">
+    <a class="brand" href="#inicio" aria-label="Inicio">JehuDev</a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#cotizador">Cotizador</a>
+    </div>
+    <a class="nav-cta" href="#contacto">Agendar</a>
+  </nav>
+
+  <section id="inicio" class="hero section-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">JehuDev - Desarrollo web a medida</p>
+      <h1>Hola, soy JehuDev. Creo experiencias digitales modernas para vender, automatizar y crecer.</h1>
+      <p class="hero-text">
+        Desarrollo landing pages, dashboards, e-commerce y sistemas internos con interfaces elegantes,
+        animaciones suaves, arquitectura escalable y enfoque comercial.
+      </p>
+      <div class="hero-actions">
+        <a class="primary-button" href="#cotizador">Calcular proyecto</a>
+        <a class="secondary-button" href="#portafolio">Ver trabajos</a>
+      </div>
+      <div class="proof-row" aria-label="Indicadores">
+        <span><strong>24/7</strong> captacion</span>
+        <span><strong>100%</strong> responsive</span>
+        <span><strong>IA</strong> integrada</span>
+      </div>
+    </div>
+
+    <div class="hero-card glass-panel">
+      <div class="profile-card">
+        <div class="profile-photo" aria-label="Foto de JehuDev">
+          <img src="jehudev-profile.png" alt="Retrato profesional de JehuDev">
+        </div>
+        <div>
+          <p class="eyebrow">Portafolio personal</p>
+          <h2>JehuDev</h2>
+          <p>Frontend elegante, backend solido y automatizaciones con IA para negocios que quieren moverse rapido.</p>
+        </div>
+      </div>
+      <div class="metric-grid">
+        <article>
+          <strong>+38%</strong>
+          <span>conversion</span>
+        </article>
+        <article>
+          <strong>-62%</strong>
+          <span>tareas manuales</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="content-section">
+    <div class="section-heading">
+      <p class="eyebrow">Servicios</p>
+      <h2>Soluciones completas, desde la primera idea hasta la publicacion.</h2>
+    </div>
+
+    <div class="cards-grid">
+      @for (service of services; track service.title) {
+        <article class="service-card glass-panel">
+          <span>{{ service.tag }}</span>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.text }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section id="portafolio" class="content-section split-section">
+    <div class="section-heading">
+      <p class="eyebrow">Portafolio interactivo</p>
+      <h2>Proyectos pensados para verse bien y funcionar mejor.</h2>
+      <p>
+        Cada proyecto combina estrategia, UI responsive, rendimiento y una experiencia clara para el usuario final.
+      </p>
+    </div>
+
+    <div class="portfolio-list glass-panel">
+      @for (project of projects; track project) {
+        <button type="button">
+          <span>{{ $index + 1 }}</span>
+          {{ project }}
+        </button>
+      }
+    </div>
+  </section>
+
+  <section id="cotizador" class="content-section quote-section">
+    <div class="quote-panel glass-panel">
+      <div>
+        <p class="eyebrow">Calculadora de cotizacion</p>
+        <h2>Estima tu inversion inicial en soles.</h2>
+      </div>
+
+      <div class="form-grid">
+        <label>
+          Moneda
+          <select [(ngModel)]="selectedCurrency" name="selectedCurrency">
+            <option value="PEN">Soles (PEN)</option>
+            <option value="USD">Dolares (USD)</option>
+          </select>
+        </label>
+
+        <label>
+          Tipo de proyecto
+          <select [(ngModel)]="projectType" name="projectType">
+            <option value="landing">Landing page</option>
+            <option value="ecommerce">E-commerce</option>
+            <option value="dashboard">Dashboard</option>
+            <option value="custom">Sistema a medida</option>
+          </select>
+        </label>
+
+        <label>
+          Paginas o vistas: {{ pages }}
+          <input type="range" min="1" max="12" [(ngModel)]="pages" name="pages">
+        </label>
+
+        <label>
+          Integraciones: {{ integrations }}
+          <input type="range" min="0" max="8" [(ngModel)]="integrations" name="integrations">
+        </label>
+
+        <label>
+          Ritmo de entrega
+          <select [(ngModel)]="urgency" name="urgency">
+            <option value="flexible">Flexible</option>
+            <option value="normal">Normal</option>
+            <option value="express">Express</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <aside class="estimate-card glass-panel">
+      <span>Desde</span>
+      <strong>{{ primaryCurrencyLabel }} {{ displayedEstimate.toLocaleString(selectedCurrency === 'PEN' ? 'es-PE' : 'en-US') }}</strong>
+      <small>
+        {{ secondaryCurrencyLabel }} {{ secondaryEstimate.toLocaleString(selectedCurrency === 'PEN' ? 'en-US' : 'es-PE') }} aprox.
+        · {{ exchangeRateStatus }}: 1 USD = S/ {{ usdPenRate.toFixed(2) }}
+      </small>
+      <p>Entrega estimada: {{ timeline }}</p>
+      <a class="primary-button" href="https://wa.me/51955795876?text=Hola,%20quiero%20cotizar%20un%20proyecto%20web" target="_blank" rel="noopener">
+        Solicitar propuesta
+      </a>
+    </aside>
+  </section>
+
+  <section id="contacto" class="content-section contact-section">
+    <div class="glass-panel contact-panel">
+      <div>
+        <p class="eyebrow">Stack y enfoque</p>
+        <h2>Tecnologia moderna con una experiencia visual cuidada.</h2>
+      </div>
+      <div class="stack-list">
+        @for (item of stack; track item) {
+          <span>{{ item }}</span>
+        }
+      </div>
+    </div>
+  </section>
+
+  <a class="whatsapp-float" href="https://wa.me/51955795876?text=Hola,%20vi%20tu%20portafolio%20y%20quiero%20hablar%20sobre%20un%20proyecto" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M16.02 3.2c-7.06 0-12.8 5.72-12.8 12.76 0 2.25.59 4.45 1.72 6.39L3.1 29.1l6.93-1.82a12.78 12.78 0 0 0 5.99 1.52c7.06 0 12.8-5.72 12.8-12.76S23.08 3.2 16.02 3.2Zm0 23.42c-1.86 0-3.69-.49-5.29-1.42l-.38-.22-4.12 1.08 1.1-4.01-.25-.41a10.55 10.55 0 0 1-1.62-5.68c0-5.83 4.74-10.57 10.56-10.57 5.83 0 10.57 4.74 10.57 10.57 0 5.82-4.74 10.66-10.57 10.66Zm5.8-7.91c-.32-.16-1.89-.93-2.18-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-1 1.25-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.56-1.57-.95-.84-1.59-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.07 1.3 3.28c.16.21 2.25 3.43 5.45 4.81.76.33 1.36.53 1.82.68.77.24 1.47.21 2.02.13.62-.09 1.89-.77 2.16-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37Z"/>
+    </svg>
+  </a>
+
+  <section class="chatbot glass-panel" [class.chatbot-collapsed]="!chatOpen" aria-label="Chatbot con IA">
+    <header>
+      <div>
+        <strong>Asistente IA</strong>
+        <span>Demo interactiva</span>
+      </div>
+      <button type="button" (click)="chatOpen = !chatOpen" [attr.aria-label]="chatOpen ? 'Cerrar chat' : 'Abrir chat'">
+        {{ chatOpen ? '-' : '+' }}
+      </button>
+    </header>
+
+    @if (chatOpen) {
+      <div class="chat-messages">
+        @for (message of messages; track $index) {
+          <p [class.user-message]="message.author === 'user'">{{ message.text }}</p>
+        }
+      </div>
+      <form class="chat-form" (ngSubmit)="sendMessage()">
+        <input [(ngModel)]="chatInput" name="chatInput" placeholder="Pregunta por precio, Angular o WhatsApp">
+        <button type="submit">Enviar</button>
+      </form>
+    }
+  </section>
+</main>
