@@ -1,75 +1,130 @@
 <main class="page-shell">
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
   <div class="particle-field" aria-hidden="true">
-    @for (particle of [1,2,3,4,5,6,7,8,9,10,11,12]; track particle) {
+    @for (particle of [1,2,3,4,5,6,7,8]; track particle) {
       <span></span>
     }
   </div>
 
-  <nav class="nav glass-panel">
-    <a class="brand" href="#inicio" aria-label="Inicio">JehuDev</a>
-    <div class="nav-links">
-      <a href="#servicios">Servicios</a>
-      <a href="#portafolio">Portafolio</a>
-      <a href="#cotizador">Cotizador</a>
+  <nav class="nav glass-panel" aria-label="Navegación principal">
+    <a class="brand" href="#inicio" (click)="closeMenu()" aria-label="Ir al inicio">JehuDev</a>
+    <button class="menu-toggle" type="button" (click)="menuOpen = !menuOpen" [attr.aria-expanded]="menuOpen" aria-controls="main-menu" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div id="main-menu" class="nav-links" [class.nav-links-open]="menuOpen">
+      @for (item of navItems; track item.id) {
+        <a [href]="'#' + item.id" [class.active-link]="activeSection === item.id" (click)="closeMenu()">{{ item.label }}</a>
+      }
     </div>
-    <a class="nav-cta" href="#contacto">Agendar</a>
+    <a class="nav-cta" [href]="whatsappUrl" target="_blank" rel="noopener">Cotizar</a>
   </nav>
 
-  <section id="inicio" class="hero section-grid">
+  <section id="inicio" class="hero section-grid reveal-section">
     <div class="hero-copy">
-      <p class="eyebrow">JehuDev - Desarrollo web a medida</p>
-      <h1>Hola, soy JehuDev. Creo experiencias digitales modernas para vender, automatizar y crecer.</h1>
+      <p class="eyebrow">JehuDev - Desarrollo web freelance</p>
+      <h1>Creo páginas web modernas que ayudan a empresas y emprendedores a conseguir más clientes.</h1>
       <p class="hero-text">
-        Desarrollo landing pages, dashboards, e-commerce y sistemas internos con interfaces elegantes,
-        animaciones suaves, arquitectura escalable y enfoque comercial.
+        Desarrollo sitios rápidos, profesionales y adaptados a celulares, con conexiones a WhatsApp,
+        formularios, sistemas administrativos y chatbots.
       </p>
       <div class="hero-actions">
-        <a class="primary-button" href="#cotizador">Calcular proyecto</a>
-        <a class="secondary-button" href="#portafolio">Ver trabajos</a>
+        <a class="primary-button" [href]="whatsappUrl" target="_blank" rel="noopener">Solicitar cotización</a>
+        <a class="secondary-button" href="#paquetes">Ver paquetes</a>
       </div>
-      <div class="proof-row" aria-label="Indicadores">
-        <span><strong>24/7</strong> captacion</span>
-        <span><strong>100%</strong> responsive</span>
-        <span><strong>IA</strong> integrada</span>
+      <div class="proof-row" aria-label="Beneficios principales">
+        <span><strong>Mobile first</strong> para celulares</span>
+        <span><strong>Contacto directo</strong> por WhatsApp</span>
+        <span><strong>Código claro</strong> y escalable</span>
       </div>
     </div>
 
-    <div class="hero-card glass-panel">
+    <aside class="hero-card glass-panel" aria-label="Perfil de JehuDev">
       <div class="profile-card">
-        <div class="profile-photo" aria-label="Foto de JehuDev">
-          <img src="jehudev-profile.png" alt="Retrato profesional de JehuDev">
+        <div class="profile-photo">
+          <img src="jehudev-profile.png" alt="Retrato profesional de JehuDev" loading="eager">
         </div>
         <div>
-          <p class="eyebrow">Portafolio personal</p>
+          <p class="eyebrow">Desarrollador web</p>
           <h2>JehuDev</h2>
-          <p>Frontend elegante, backend solido y automatizaciones con IA para negocios que quieren moverse rapido.</p>
+          <p>Frontend elegante, backend sólido y soluciones digitales pensadas para negocios reales.</p>
         </div>
       </div>
-      <div class="metric-grid">
-        <article>
-          <strong>+38%</strong>
-          <span>conversion</span>
-        </article>
-        <article>
-          <strong>-62%</strong>
-          <span>tareas manuales</span>
-        </article>
-      </div>
-    </div>
+    </aside>
   </section>
 
-  <section id="servicios" class="content-section">
+  <section class="value-strip section-grid reveal-section" aria-label="Propuesta de valor">
+    @for (benefit of benefits; track benefit) {
+      <article class="value-item glass-panel">
+        <span aria-hidden="true">✓</span>
+        <p>{{ benefit }}</p>
+      </article>
+    }
+  </section>
+
+  <section id="servicios" class="content-section reveal-section">
     <div class="section-heading">
       <p class="eyebrow">Servicios</p>
-      <h2>Soluciones completas, desde la primera idea hasta la publicacion.</h2>
+      <h2>Soluciones digitales para presentar mejor tu negocio y recibir más consultas.</h2>
+      <p>El enfoque está en claridad, confianza y funciones que ayuden a tus clientes a contactarte sin fricción.</p>
     </div>
 
-    <div class="cards-grid">
+    <div class="cards-grid services-grid">
       @for (service of services; track service.title) {
-        <article class="service-card glass-panel">
-          <span>{{ service.tag }}</span>
+        <article class="service-card glass-panel" [class.whatsapp-service]="service.icon === 'WA'" [attr.data-service]="service.icon">
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              @switch (service.icon) {
+                @case ('WB') {
+                  <path d="M4 5h16v10H4z"/>
+                  <path d="M9 19h6"/>
+                  <path d="M12 15v4"/>
+                }
+                @case ('LP') {
+                  <path d="M12 4v16"/>
+                  <path d="M4 12h16"/>
+                  <circle cx="12" cy="12" r="7"/>
+                  <circle cx="12" cy="12" r="2"/>
+                }
+                @case ('SW') {
+                  <path d="M4 5h7v7H4z"/>
+                  <path d="M13 5h7v4h-7z"/>
+                  <path d="M13 11h7v8h-7z"/>
+                  <path d="M4 14h7v5H4z"/>
+                }
+                @case ('TV') {
+                  <path d="M4 6h2l1.5 8.5h8.8l1.5-5.7H7.1"/>
+                  <path d="M9 19h.01"/>
+                  <path d="M16 19h.01"/>
+                  <path d="M9.2 16.5h6.7"/>
+                }
+                @case ('IA') {
+                  <rect x="6" y="8" width="12" height="10" rx="3"/>
+                  <path d="M12 4v4"/>
+                  <path d="M9.5 13h.01"/>
+                  <path d="M14.5 13h.01"/>
+                  <path d="M10 16h4"/>
+                  <path d="M4 12h2"/>
+                  <path d="M18 12h2"/>
+                }
+                @case ('WA') {
+                  <path class="whatsapp-bubble" d="M5 19l1.4-3.8A7 7 0 1 1 9 17.7z"/>
+                  <path class="whatsapp-phone" d="M9.2 9.7c.3-.6.7-.6 1.1-.2l.7 1c.2.3.2.6 0 .9l-.4.5c.5.9 1.3 1.7 2.3 2.2l.5-.5c.3-.2.6-.2.9 0l1 .7c.4.3.4.8-.1 1.1-.5.4-1.2.5-2 .2-1.9-.6-4.2-2.8-4.8-4.8-.2-.5 0-.9.8-1.1z"/>
+                }
+                @case ('MT') {
+                  <path d="M14.7 6.3a4 4 0 0 0-5 5L4 17l3 3 5.7-5.7a4 4 0 0 0 5-5l-3 3-3-3z"/>
+                }
+                @default {
+                  <circle cx="12" cy="12" r="8"/>
+                  <path d="M12 8v4l3 2"/>
+                  <path d="M8 4.8 6.6 3.4"/>
+                  <path d="M16 4.8l1.4-1.4"/>
+                }
+              }
+            </svg>
+          </span>
           <h3>{{ service.title }}</h3>
           <p>{{ service.text }}</p>
         </article>
@@ -77,30 +132,47 @@
     </div>
   </section>
 
-  <section id="portafolio" class="content-section split-section">
+  <section id="paquetes" class="content-section reveal-section">
     <div class="section-heading">
-      <p class="eyebrow">Portafolio interactivo</p>
-      <h2>Proyectos pensados para verse bien y funcionar mejor.</h2>
-      <p>
-        Cada proyecto combina estrategia, UI responsive, rendimiento y una experiencia clara para el usuario final.
-      </p>
+      <p class="eyebrow">Paquetes iniciales</p>
+      <h2>Opciones claras para empezar sin complicarte.</h2>
+      <p>Mientras construyo más casos reales, prefiero mostrarte propuestas concretas y honestas para que sepas qué puedes pedirme.</p>
     </div>
 
-    <div class="portfolio-list glass-panel">
-      @for (project of projects; track project) {
-        <button type="button">
-          <span>{{ $index + 1 }}</span>
-          {{ project }}
-        </button>
+    <div class="package-grid">
+      @for (package of packages; track package.title) {
+        <article class="package-card glass-panel">
+          <div class="package-top">
+            <p class="package-type">{{ package.type }}</p>
+            <h3>{{ package.title }}</h3>
+            <p>{{ package.description }}</p>
+          </div>
+          <div class="package-list" aria-label="Incluye">
+            @for (item of package.includes; track item) {
+              <span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                {{ item }}
+              </span>
+            }
+          </div>
+          <div class="package-footer">
+            <span>Ideal para</span>
+            <strong>{{ package.bestFor }}</strong>
+          </div>
+          <a class="secondary-button" [href]="whatsappUrl" target="_blank" rel="noopener">Consultar este paquete</a>
+        </article>
       }
     </div>
   </section>
 
-  <section id="cotizador" class="content-section quote-section">
+  <section id="cotizador" class="content-section quote-section reveal-section">
     <div class="quote-panel glass-panel">
       <div>
-        <p class="eyebrow">Calculadora de cotizacion</p>
-        <h2>Estima tu inversion inicial en soles.</h2>
+        <p class="eyebrow">Calculadora de cotización</p>
+        <h2>Estima tu inversión inicial.</h2>
+        <p>Es una referencia para empezar una conversación. El precio final depende del alcance real.</p>
       </div>
 
       <div class="form-grid">
@@ -108,7 +180,7 @@
           Moneda
           <select [(ngModel)]="selectedCurrency" name="selectedCurrency">
             <option value="PEN">Soles (PEN)</option>
-            <option value="USD">Dolares (USD)</option>
+            <option value="USD">Dólares (USD)</option>
           </select>
         </label>
 
@@ -116,20 +188,20 @@
           Tipo de proyecto
           <select [(ngModel)]="projectType" name="projectType">
             <option value="landing">Landing page</option>
-            <option value="ecommerce">E-commerce</option>
+            <option value="ecommerce">Tienda virtual</option>
             <option value="dashboard">Dashboard</option>
             <option value="custom">Sistema a medida</option>
           </select>
         </label>
 
         <label>
-          Paginas o vistas: {{ pages }}
+          Páginas o vistas: {{ pages }}
           <input type="range" min="1" max="12" [(ngModel)]="pages" name="pages">
         </label>
 
         <label>
-          Integraciones: {{ integrations }}
-          <input type="range" min="0" max="8" [(ngModel)]="integrations" name="integrations">
+          Funciones conectadas: {{ connectedFeatures }}
+          <input type="range" min="0" max="8" [(ngModel)]="connectedFeatures" name="connectedFeatures">
         </label>
 
         <label>
@@ -151,27 +223,123 @@
         · {{ exchangeRateStatus }}: 1 USD = S/ {{ usdPenRate.toFixed(2) }}
       </small>
       <p>Entrega estimada: {{ timeline }}</p>
-      <a class="primary-button" href="https://wa.me/51955795876?text=Hola,%20quiero%20cotizar%20un%20proyecto%20web" target="_blank" rel="noopener">
-        Solicitar propuesta
-      </a>
+      <a class="primary-button" [href]="whatsappUrl" target="_blank" rel="noopener">Solicitar propuesta</a>
     </aside>
   </section>
 
-  <section id="contacto" class="content-section contact-section">
-    <div class="glass-panel contact-panel">
+  <section id="sobre-mi" class="content-section about-section reveal-section">
+    <div class="glass-panel about-panel">
       <div>
-        <p class="eyebrow">Stack y enfoque</p>
-        <h2>Tecnologia moderna con una experiencia visual cuidada.</h2>
+        <p class="eyebrow">Sobre mí</p>
+        <h2>Soy Jehú, desarrollador web enfocado en crear soluciones modernas, funcionales y fáciles de usar.</h2>
+        <p>
+          Me gusta entender las necesidades de cada negocio y convertirlas en páginas y sistemas que transmitan
+          confianza, ayuden a captar clientes y mejoren procesos. Trabajo con comunicación constante, diseño
+          responsive y desarrollo frontend/backend cuando el proyecto lo requiere.
+        </p>
       </div>
-      <div class="stack-list">
-        @for (item of stack; track item) {
+      <div class="trust-list">
+        @for (item of trustItems; track item) {
           <span>{{ item }}</span>
         }
       </div>
     </div>
   </section>
 
-  <a class="whatsapp-float" href="https://wa.me/51955795876?text=Hola,%20vi%20tu%20portafolio%20y%20quiero%20hablar%20sobre%20un%20proyecto" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <section id="proceso" class="content-section reveal-section">
+    <div class="section-heading">
+      <p class="eyebrow">Cómo trabajaremos</p>
+      <h2>Un proceso claro para reducir dudas desde el inicio.</h2>
+    </div>
+    <div class="process-grid">
+      @for (step of processSteps; track step) {
+        <article class="process-step glass-panel">
+          <span>{{ $index + 1 }}</span>
+          <p>{{ step }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="content-section tech-section reveal-section">
+    <div class="section-heading">
+      <p class="eyebrow">Qué recibes</p>
+      <h2>Una entrega clara, usable y pensada para vender.</h2>
+      <p>Sin palabras técnicas innecesarias: me enfoco en que tu página se vea bien, funcione en celulares y ayude a que te contacten.</p>
+    </div>
+    <div class="tech-grid">
+      @for (group of deliveryItems; track group.title) {
+        <article class="tech-card glass-panel">
+          <h3>{{ group.title }}</h3>
+          <div class="stack-list">
+            @for (item of group.items; track item) {
+              <span>{{ item }}</span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section id="contacto" class="content-section contact-section reveal-section">
+    <div class="section-heading">
+      <p class="eyebrow">Contacto</p>
+      <h2>Conversemos sobre tu página o sistema.</h2>
+      <p>Cuanto más claro sea el mensaje, más rápido podré orientarte con alcance, tiempos y presupuesto.</p>
+    </div>
+
+    <div class="contact-grid">
+      <form class="contact-form glass-panel" novalidate (ngSubmit)="submitContact()">
+        <label>
+          Nombre
+          <input type="text" name="contactName" [(ngModel)]="contactForm.name" autocomplete="name" required>
+          @if (contactSubmitted && !contactForm.name.trim()) {
+            <small>Ingresa tu nombre.</small>
+          }
+        </label>
+
+        <label>
+          Tipo de proyecto
+          <select name="contactProjectType" [(ngModel)]="contactForm.projectType" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Pagina web">Página web</option>
+            <option value="Landing page">Landing page</option>
+            <option value="Sistema web">Sistema web</option>
+            <option value="Tienda virtual">Tienda virtual</option>
+            <option value="Mejora o mantenimiento">Mejora o mantenimiento</option>
+          </select>
+          @if (contactSubmitted && !contactForm.projectType) {
+            <small>Selecciona un tipo de proyecto.</small>
+          }
+        </label>
+
+        <label>
+          Mensaje
+          <textarea name="contactMessage" [(ngModel)]="contactForm.message" rows="5" required></textarea>
+          @if (contactSubmitted && contactForm.message.trim().length < 15) {
+            <small>Cuéntame un poco más sobre lo que necesitas.</small>
+          }
+        </label>
+
+        <button class="primary-button" type="submit">Enviar por WhatsApp</button>
+        @if (contactStatus === 'success') {
+          <p class="success-message">Se abrió WhatsApp con tu mensaje listo para enviar.</p>
+        }
+        @if (contactStatus === 'error') {
+          <p class="error-message">No se pudo abrir WhatsApp. Usa el botón verde flotante.</p>
+        }
+      </form>
+
+      <aside class="contact-card glass-panel">
+        <h3>Contacto directo</h3>
+        <a class="contact-link" [href]="whatsappUrl" target="_blank" rel="noopener">WhatsApp: +51 955 795 876</a>
+        <a class="contact-link" [href]="githubUrl" target="_blank" rel="noopener">GitHub</a>
+        <p>LinkedIn: AGREGAR_ENLACE_LINKEDIN</p>
+      </aside>
+    </div>
+  </section>
+
+  <a class="whatsapp-float" [href]="whatsappUrl" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp: Hola, vi tu portafolio y quisiera conversar sobre un proyecto web.">
     <svg viewBox="0 0 32 32" aria-hidden="true">
       <path d="M16.02 3.2c-7.06 0-12.8 5.72-12.8 12.76 0 2.25.59 4.45 1.72 6.39L3.1 29.1l6.93-1.82a12.78 12.78 0 0 0 5.99 1.52c7.06 0 12.8-5.72 12.8-12.76S23.08 3.2 16.02 3.2Zm0 23.42c-1.86 0-3.69-.49-5.29-1.42l-.38-.22-4.12 1.08 1.1-4.01-.25-.41a10.55 10.55 0 0 1-1.62-5.68c0-5.83 4.74-10.57 10.56-10.57 5.83 0 10.57 4.74 10.57 10.57 0 5.82-4.74 10.66-10.57 10.66Zm5.8-7.91c-.32-.16-1.89-.93-2.18-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-1 1.25-.18.21-.37.24-.69.08-.32-.16-1.34-.49-2.56-1.57-.95-.84-1.59-1.88-1.77-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.55.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.98-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.65s1.14 3.07 1.3 3.28c.16.21 2.25 3.43 5.45 4.81.76.33 1.36.53 1.82.68.77.24 1.47.21 2.02.13.62-.09 1.89-.77 2.16-1.52.27-.75.27-1.39.19-1.52-.08-.13-.29-.21-.61-.37Z"/>
     </svg>
@@ -183,19 +351,20 @@
         <strong>Asistente IA</strong>
         <span>Demo interactiva</span>
       </div>
-      <button type="button" (click)="chatOpen = !chatOpen" [attr.aria-label]="chatOpen ? 'Cerrar chat' : 'Abrir chat'">
+      <button type="button" (click)="toggleChat()" [attr.aria-label]="chatOpen ? 'Cerrar chat' : 'Abrir chat'">
         {{ chatOpen ? '-' : '+' }}
       </button>
     </header>
 
     @if (chatOpen) {
-      <div class="chat-messages">
+      <div #chatMessages class="chat-messages" aria-live="polite">
         @for (message of messages; track $index) {
           <p [class.user-message]="message.author === 'user'">{{ message.text }}</p>
         }
       </div>
       <form class="chat-form" (ngSubmit)="sendMessage()">
-        <input [(ngModel)]="chatInput" name="chatInput" placeholder="Pregunta por precio, Angular o WhatsApp">
+        <label class="sr-only" for="chat-input">Mensaje para el asistente IA</label>
+        <input id="chat-input" [(ngModel)]="chatInput" name="chatInput" placeholder="Pregunta por precio, Angular o WhatsApp">
         <button type="submit">Enviar</button>
       </form>
     }

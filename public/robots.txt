@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jehuavalocancino77739.github.io/jehudev-portafolio/sitemap.xml
