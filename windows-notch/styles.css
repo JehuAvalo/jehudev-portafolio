@@ -89,3 +89,9 @@ footer small{color:#888c94;border-color:#e0e1e5}
 .hero-product p{margin:8px 0 32px;color:#848890;font:10px 'Space Mono';letter-spacing:.08em}
 .hero-product p i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#14a8c7;margin-right:7px}
 @media(max-width:720px){.hero.hero-centered{padding-top:58px}.hero-centered h1{font-size:48px}.hero-centered .hero-copy>p{font-size:16px}.hero-centered .trust{gap:8px 12px}.hero-product{margin-top:38px;width:115%;margin-left:-7.5%}.hero-product p{font-size:8px}}
+
+/* Tipografía optimizada para pantallas Windows */
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+body{font-family:'DM Sans','Segoe UI Variable','Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-synthesis:none}
+h1,.section-title h2,.download h2,.tech h2{font-weight:700;letter-spacing:-.045em;text-wrap:balance}
+p,.nav-links,.button,.feature h3,.faq summary{font-synthesis:none;text-rendering:optimizeLegibility}
