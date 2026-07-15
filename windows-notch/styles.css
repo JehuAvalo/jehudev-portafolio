@@ -3,3 +3,74 @@
 @media(max-width:1000px){.hero{grid-template-columns:1fr;padding:90px 0}.hero-copy{text-align:center}.hero-copy>p{margin-inline:auto}.hero-actions,.trust{justify-content:center}.hero-stage{min-height:520px}.feature{grid-column:span 3!important}.tech-grid{grid-template-columns:1fr}.tech-grid>div:first-child{text-align:center}.tech p{margin-inline:auto}.tech ul{text-align:left}.orbit{max-width:540px;width:100%;margin:auto}.faq{grid-template-columns:1fr}.settings-window{grid-template-columns:190px 1fr}}
 @media(max-width:720px){.shell{width:min(100% - 24px,1180px)}nav{height:70px}.nav-links{display:none;position:absolute;top:69px;left:0;right:0;padding:20px;background:#0b0c10;border:1px solid #242731;flex-direction:column}.nav-links.open{display:flex}.nav-cta{display:none}.menu{display:block}.hero{min-height:auto;padding-top:70px}.hero-stage{min-height:360px}.desktop{width:96%;box-shadow:0 20px 50px #000}.widget{width:90%;padding:9px;min-height:155px}.now{grid-template-columns:40px 1fr auto}.cover{width:38px;height:38px}.clock{display:none}.lyrics b{font-size:10px}.controls button{width:24px;height:24px}.controls .play{width:29px;height:29px}.stage-note{bottom:-6px}.strip>div{justify-content:flex-start;animation:marquee 18s linear infinite}@keyframes marquee{to{transform:translateX(-55%)}}.feature-grid{grid-template-columns:1fr}.feature{grid-column:1!important}.mode-screen{height:310px}.mode-ui.island,.mode-ui.notch-mode{width:88%}.mode-ui>div:nth-child(2){min-width:110px}.settings-window{grid-template-columns:1fr}.settings-window aside{display:none}.settings-content{padding:24px 18px}.setting-row{grid-template-columns:110px 1fr 35px}.preview-notch{width:100%}.tech ul{grid-template-columns:1fr}.orbit{height:350px}.orbit>u{width:240px;height:240px}.orbit>u:nth-of-type(2){width:330px;height:330px}.orbit .o2{right:8px}.orbit .o4{left:8px}.req-grid{grid-template-columns:1fr}.download{margin-bottom:50px;border-radius:20px}footer>.shell{grid-template-columns:1fr}footer div>div{justify-content:flex-start}h1{font-size:56px}}
 @media(max-width:430px){h1{font-size:48px}.hero-actions{flex-direction:column}.trust{flex-direction:column;gap:8px}.section-title h2,.download h2,.tech h2{font-size:39px}.mode-tabs button{padding:10px 12px}.mode-wave{display:none}.feature{padding:22px}.settings-content{padding:18px 12px}.choice button{padding:9px 7px}.preview-notch>i{display:none}.orbit{transform:scale(.86)}footer div>div{flex-wrap:wrap}}
+
+/* Tema luminoso inspirado en una página premium de producto */
+:root{--bg:#f7f7f5;--panel:#ffffff;--panel2:#f0f1f3;--line:#dedfe3;--text:#111216;--muted:#686d77}
+body{background:#f7f7f5;color:#111216;background-image:radial-gradient(circle at 72% 5%,#d9ceff80,transparent 29%),radial-gradient(circle at 20% 18%,#ccf5ff80,transparent 24%)}
+.noise{opacity:.018}
+nav{border-color:#11121612}
+.nav-links{color:#555a63}
+.nav-links a:hover{color:#111216}
+.nav-cta{border-color:#d5d7dc;background:#ffffffb8;box-shadow:0 6px 25px #1f24300b}
+.badge{border-color:#d9dce1;background:#ffffffc7;color:#525761;box-shadow:0 8px 30px #1d23300b}
+h1{color:#111216}
+h1 em{background:linear-gradient(105deg,#11a6c9,#7253e7 58%,#d744ac);background-clip:text}
+.hero-copy>p{color:#626872}
+.button.secondary{border-color:#d4d6dc;background:#ffffff;color:#262930;box-shadow:0 8px 30px #1317220c}
+.trust{color:#717680}
+.hero-stage{filter:drop-shadow(0 35px 45px #40475d24)}
+.strip{background:#fff;border-color:#17191e10}
+.strip>div{color:#6c717a}
+.strip i{background:#b8bbc2}
+.section-title>span,.tech-label{color:#0b9dbc}
+.section-title>p{color:#676c75}
+.feature{border-color:#dedfe3;background:linear-gradient(150deg,#fff,#f7f7f8);box-shadow:0 18px 55px #1a1f2c09}
+.feature:hover{box-shadow:0 25px 65px #1a1f2c12;transform:translateY(-4px)}
+.feature-icon{border-color:#dfe1e5;background:#fff;color:#109fbe;box-shadow:0 8px 25px #1f243010}
+.feature>span{color:#7c818b}
+.feature>p{color:#676c76}
+.mini-player{border-color:#dedfe4;background:#fff;box-shadow:0 12px 35px #15192310}
+.mini-player small{color:#737883}
+.lyric-lines i{background:#dfe1e6}
+.round-buttons i{background:#e9eaed;color:#272a30}
+.round-buttons i:nth-child(2){background:#17191d;color:white}
+.time-card span{color:#747983}
+.modes{background:#fff;border-color:#181a2010}
+.mode-tabs{border-color:#dedfe4;background:#f2f2f3}
+.mode-tabs button{color:#747983}
+.mode-tabs button.active{background:#fff;color:#16181c;box-shadow:0 5px 18px #171a2412}
+.mode-screen{border-color:#d8dae0;background:#e9eaee;box-shadow:0 32px 80px #242a3b1b}
+.mode-description p{color:#6c717b}
+.settings-window{border-color:#d9dbe0;background:#fff;box-shadow:0 38px 100px #26304416}
+.settings-window aside{border-color:#e3e4e8;background:#f6f6f7}
+.settings-window aside button{color:#6c717a}
+.settings-window aside button.active{background:#fff;color:#17191d;box-shadow:0 8px 22px #24293810}
+.settings-window aside>small{color:#9a9da4}
+.settings-brand small{color:#858a93}
+.settings-content>div>span,.setting-row>span{color:#555a63}
+.choice button,.select{border-color:#d9dbe0;background:#fafafb;color:#686d76}
+.choice button.selected{border-color:#16a9c8;color:#17191d;background:#dff8fd}
+.setting-row>i{background:#dfe1e6}
+.setting-row b{color:#6f747d}
+.preview-box{background:#eceef1;border-color:#d7d9de}
+.preview-box>small{color:#747983}
+.tech{background:linear-gradient(140deg,#fff,#f0eff8);border-color:#181a2010}
+.tech p{color:#666b75}
+.tech li{color:#4f545d}
+.orbit-core{background:linear-gradient(145deg,#fff,#eceef2);border-color:#d5d8de;box-shadow:0 24px 75px #604fd427}
+.orbit>u{border-color:#cfd2d9}
+.orbit>i{background:#fff;border-color:#d9dbe1;color:#149fbd;box-shadow:0 10px 28px #242a3814}
+.req-grid>div{border-color:#dedfe3;background:#fff;box-shadow:0 18px 55px #1a1f2c09}
+.req-grid small{color:#686d76}
+.faq-list,.faq details{border-color:#d6d8dd}
+.faq details p{color:#666b74}
+.download{border-color:#d7d9df;background:linear-gradient(145deg,#fff,#f2f2f5);box-shadow:0 35px 100px #26304416}
+.download-glow{opacity:.17}
+.app-logo{border-color:#d4d7dd;background:linear-gradient(145deg,#fff,#e8e9ed);box-shadow:0 22px 60px #26304418}
+.download>p{color:#656a73}
+.download .button{background:#dedfe3;color:#81858d}
+.download>small{color:#82868e}
+footer{border-color:#d9dbe0;background:#fff}
+footer p,footer div>div{color:#666b74}
+footer small{color:#888c94;border-color:#e0e1e5}
+@media(max-width:720px){.nav-links{background:#fff;border-color:#dedfe3;box-shadow:0 18px 45px #1d233018}}
