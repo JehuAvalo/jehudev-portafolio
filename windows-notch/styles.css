@@ -95,3 +95,10 @@ html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
 body{font-family:'DM Sans','Segoe UI Variable','Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-synthesis:none}
 h1,.section-title h2,.download h2,.tech h2{font-weight:700;letter-spacing:-.045em;text-wrap:balance}
 p,.nav-links,.button,.feature h3,.faq summary{font-synthesis:none;text-rendering:optimizeLegibility}
+
+/* Captura auténtica de la configuración */
+.real-settings{margin:55px 0 0;padding:0;text-align:center}
+.real-settings img{display:block;width:min(100%,790px);height:auto;margin-inline:auto;border:1px solid #cfd2d8;border-radius:10px;box-shadow:0 30px 80px #1f26351f;background:#0b0c10}
+.real-settings figcaption{margin-top:17px;color:#777c85;font:10px 'Space Mono';letter-spacing:.07em}
+.real-settings figcaption i{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:7px;background:#12a8c7}
+@media(max-width:720px){.real-settings{margin-top:35px}.real-settings img{border-radius:7px}.real-settings figcaption{font-size:8px}}
