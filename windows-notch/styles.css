@@ -96,7 +96,7 @@ footer small{color:#888c94;border-color:#e0e1e5}
   .hero.hero-centered{width:100%;padding:48px 16px 0;align-items:center;overflow:hidden}
   .hero-centered .hero-copy{width:100%;margin-inline:auto}
   .hero-centered h1{font-size:clamp(40px,11.5vw,54px);line-height:1;letter-spacing:-.045em;margin:22px auto 18px}
-  .hero-centered h1 br{display:none}
+  .hero-centered h1 br{display:block}
   .hero-centered .hero-copy>p{width:100%;max-width:540px;padding-inline:2px;font-size:15px;line-height:1.6}
   .hero-centered .hero-actions{width:100%;max-width:430px;margin:26px auto 0}
   .hero-centered .hero-actions .button{flex:1;min-width:0}
